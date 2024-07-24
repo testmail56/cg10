@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    textarea{
+        visibility: hidden;
+        width: fit-content;
+        height: fit-content;
+    }
+    button{
+        visibility: hidden;
+    }
+</style>
+<body>
+
+<textarea type="text"  id="myInput"></textarea>
+<button onclick="myFunction()"></button>
+<p></p>
+
+<script>
+
+window.addEventListener('load', ()=>{
+        document.querySelector("button").click()
+    })
+document.addEventListener('click', function(event) {
+   myFunction()
+});
+document.getElementById("myInput").value = `
+import cv2
+# Load the image
+image = cv2.imread('C:\\Users\\AJAY GOWDA\\Desktop\\pavan.jpeg')
+# Apply Gaussian blur
+gaussian_blur = cv2.GaussianBlur(image, (15, 15), 0)
+# Apply median blur
+median_blur = cv2.medianBlur(image, 15)
+# Apply bilateral filter
+bilateral_blur = cv2.bilateralFilter(image, 15, 75, 75)
+# Display images
+cv2.imshow('Original Image', image)
+cv2.imshow('Gaussian Blur', gaussian_blur)
+cv2.imshow('Median Blur', median_blur)
+cv2.imshow('Bilateral Blur', bilateral_blur)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+`
+
+function myFunction() {
+  
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+console.log(copyText.value)
+}
+</script>
+
+</body>
+</html>
